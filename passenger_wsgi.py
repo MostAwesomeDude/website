@@ -32,7 +32,7 @@ def entry_dict(name):
 
 @bottle.route("/static/:filename")
 def static(filename):
-    return bottle.static_file(filename, root="static")
+    return bottle.static_file(filename, root="public/static")
 
 @bottle.route("/entry/:name")
 @bottle.view("entry")
