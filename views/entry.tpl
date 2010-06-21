@@ -1,6 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
 
+%url = "/entry/%s" % entry["name"]
+
 <html>
 <head>
   <meta name="generator" content=
@@ -10,6 +12,10 @@
 </head>
 
 <body>
+%include header
+
+%include sidebar
+
 %include entrydiv **entry
 
 %include footer
