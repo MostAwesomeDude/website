@@ -21,9 +21,9 @@ h2 {
 #body {
     width: 95%;
     margin: 10px auto;
-    padding: 0px;
+    padding: 10px;
 
-    background-color: #ffffff;
+    background-color: #000000;
 }
 
 #header {
@@ -47,6 +47,12 @@ h2 {
     margin-left: 300px;
     margin-right: 200px;
     padding: 1em;
+}
+
+#main {
+    padding: 1em;
+
+    background-color: #ffffff;
 }
 
 #footer {

@@ -16,7 +16,9 @@
 <div id="body">
 %include header
 
+  <div id="main">
 %include entrydiv **entry
+  </div>
 
 %include footer
 </div>
