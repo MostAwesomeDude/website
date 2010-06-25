@@ -9,6 +9,7 @@ import sys
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
 import bottle
+import mutagen.oggvorbis
 
 bottle.debug(True)
 
@@ -65,6 +66,18 @@ def index(page=0):
         d["entries"].append(entry_dict(name))
     d["entries"].sort(key=lambda x: x["mtime"])
     d["entries"] = d["entries"][offset:offset + 5]
+
+    return d
+
+@bottle.route("/music")
+@bottle.view("music")
+def music():
+    d = {"title": title}
+    output = ""
+    for name in glob.glob("music/*.ogg"):
+        vorbisinfo = mutagen.oggvorbis.OggVorbis(name)
+        output += str(vorbisinfo)
+    d["data"] = output
 
     return d
 
