@@ -53,3 +53,6 @@ def index():
     return d
 
 application = bottle.app()
+
+if __name__ == "__main__":
+    bottle.run(app=application)
