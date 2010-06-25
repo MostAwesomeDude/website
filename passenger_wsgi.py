@@ -19,10 +19,10 @@ def entry_dict(name):
     # Split off .entry
     d = {"name": name[:-6]}
 
-    # os.stat(...)[8] is mtime, [9] is ctime
+    # os.stat(...)[8] is ctime, [9] is mtime
     stat = os.stat(name)
-    d["mtime"] = stat[8]
-    d["ctime"] = stat[9]
+    d["ctime"] = stat[8]
+    d["mtime"] = stat[9]
 
     with open(name, "r") as f:
         d["paragraphs"] = [i.strip() for i in f.read().split("\n\n")]
