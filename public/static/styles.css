@@ -18,6 +18,10 @@ h2 {
     color: #009900;
 }
 
+p {
+    text-indent: 2em;
+}
+
 #body {
     width: 95%;
     margin: 10px auto;
