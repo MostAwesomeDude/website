@@ -13,7 +13,7 @@
 </h2>
 <div class="content">
 %for paragraph in paragraphs:
-<p>{{paragraph}}</p>
+<p>{{!paragraph}}</p>
 %end
 <p>~ C.</p>
 <p>Created on {{datetime.datetime.fromtimestamp(ctime).strftime("%b %d, %Y")}}</p>
