@@ -35,3 +35,12 @@ div {
     margin-right: 200px;
     padding: 1em;
 }
+
+#footer {
+    background-color: #000000;
+    color: #ffffff;
+
+    font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+    font-size: smaller;
+    text-align: center;
+}
