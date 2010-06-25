@@ -4,9 +4,20 @@ div {
 
 #body {
     position: absolute;
-    left: 5%;
     width: 90%;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 10px auto;
     padding: 10px;
+}
+
+#header-left {
+    float: left;
+    width: 300px;
+    margin: 0px;
+}
+
+#header-right {
+    float: right;
+    width: 300px;
+    margin: 0px;
+    padding: 1em;
 }
