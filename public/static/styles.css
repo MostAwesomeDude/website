@@ -8,6 +8,14 @@ div {
     border: black 5px dashed; /* For illustration only */
 }
 
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 #body {
     width: 95%;
     margin: 10px auto;

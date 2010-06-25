@@ -4,13 +4,13 @@
 
 %url = "/entry/%s" % name
 
-<h1 class="title">
+<h2 class="title">
 %if bottle.request.fullpath != url:
 <a href="/entry/{{name}}">{{headline}}</a>
 %else:
 {{headline}}
 %end
-</h1>
+</h2>
 <div class="content">
 %for paragraph in paragraphs:
 <p>{{paragraph}}</p>

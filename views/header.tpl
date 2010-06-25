@@ -4,12 +4,7 @@
 
 <div id="header">
   <div id="header-left">
-%if bottle.request.fullpath != home:
-<a href={{home}} title="Home"><img src= "/static/matrix-keys.png" alt="Home"
-id="logo" name="logo" /></a>
-%else:
-<img src= "/static/matrix-keys.png" alt="Home" id="logo" name="logo" />
-%end
+    <img src= "/static/matrix-keys.png" alt="Home" id="logo" name="logo" />
   </div>
 
   <div id="header-right">
