@@ -1,4 +1,4 @@
-<div id="sidebar-left">
+<div id="sidebar">
   <h2 class="title">Ohloh</h2>
 
   <div class="content">

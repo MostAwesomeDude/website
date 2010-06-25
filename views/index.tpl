@@ -13,22 +13,16 @@
 </head>
 
 <body>
-  <div id="masthead">
+<div id="body">
 %include header
-  </div>
-  <div id="page">
-    <div id="middlecontainer">
+
 %include sidebar
-      <div id="main">
-        <div id="squeeze">
+
 %for entry in entries:
   %include entrydiv **entry
 %end
-        </div>
-      </div>
-    </div>
 
 %include footer
-  </div>
+</div>
 </body>
 </html>
