@@ -54,12 +54,18 @@ def entry(name):
         bottle.abort(404, "The desired entry does not exist.")
 
 @bottle.route("/")
+@bottle.route("/index")
+@bottle.route("/index/:page")
 @bottle.view("index")
-def index():
+def index(page=0):
     d = {"title": title, "entries" : list()}
+    offset = page * 5
+
     for name in glob.glob("*.entry"):
         d["entries"].append(entry_dict(name))
     d["entries"].sort(key=lambda x: x["mtime"])
+    d["entries"] = d["entries"][offset:offset + 5]
+
     return d
 
 application = bottle.app()
