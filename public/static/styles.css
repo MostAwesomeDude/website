@@ -4,16 +4,18 @@ body {
     font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
 }
 
-div {
-    border: black 5px dashed; /* For illustration only */
-}
-
 a {
+    color: inherit;
+
     text-decoration: none;
 }
 
 a:hover {
     text-decoration: underline;
+}
+
+h2 {
+    color: #009900;
 }
 
 #body {
