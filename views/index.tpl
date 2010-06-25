@@ -16,8 +16,6 @@
 <div id="body">
 %include header
 
-%include sidebar
-
 %for entry in entries:
   %include entrydiv **entry
 %end
