@@ -17,7 +17,12 @@ div {
 
 #header-right {
     float: right;
-    width: 300px;
+    width: 200px;
     margin: 0px;
+}
+
+#header-center {
+    margin-left: 300px;
+    margin-right: 200px;
     padding: 1em;
 }
