@@ -21,7 +21,7 @@
     <h2>{{"%s (%s)" % album}}</h2>
     <ul>
 %for song in songs:
-      <li>{{song[1]}}</li>
+      <li>{{!'<a href="/%s">%s</a>' % song[0:2]}}</li>
 %end
     </ul>
 %end

@@ -4,6 +4,7 @@ from __future__ import with_statement
 
 import collections
 import glob
+import operator
 import os
 import sys
 
@@ -46,6 +47,10 @@ def entry_dict(name):
 def static(filename):
     return bottle.static_file(filename, root="public/static")
 
+@bottle.route("/music/:filename")
+def static_music(filename):
+    return bottle.static_file(filename, root="music")
+
 @bottle.route("/entry/:name")
 @bottle.view("entry")
 def entry(name):
@@ -77,13 +82,12 @@ def music():
 
     for name in glob.glob("music/*.ogg"):
         info = mutagen.oggvorbis.OggVorbis(name)
-        print info
         album = info["album"][0], info["date"][0]
-        track = info["tracknumber"][0], info["title"][0]
+        track = name, info["title"][0], info["tracknumber"][0]
         d["albums"][album].append(track)
 
     for album in d["albums"].itervalues():
-        album.sort()
+        album.sort(key=operator.itemgetter(2))
 
     return d
 
