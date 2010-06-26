@@ -2,6 +2,7 @@
 
 from __future__ import with_statement
 
+import collections
 import glob
 import os
 import sys
@@ -72,12 +73,17 @@ def index(page=0):
 @bottle.route("/music")
 @bottle.view("music")
 def music():
-    d = {"title": title}
-    output = ""
+    d = {"title": title, "albums": collections.defaultdict(list)}
+
     for name in glob.glob("music/*.ogg"):
-        vorbisinfo = mutagen.oggvorbis.OggVorbis(name)
-        output += str(vorbisinfo)
-    d["data"] = output
+        info = mutagen.oggvorbis.OggVorbis(name)
+        print info
+        album = info["album"][0], info["date"][0]
+        track = info["tracknumber"][0], info["title"][0]
+        d["albums"][album].append(track)
+
+    for album in d["albums"].itervalues():
+        album.sort()
 
     return d
 
