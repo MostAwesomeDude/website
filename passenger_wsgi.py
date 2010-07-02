@@ -79,7 +79,7 @@ def index(page=0):
 
     for name in glob.glob("*.entry"):
         d["entries"].append(entry_dict(name))
-    d["entries"].sort(key=lambda x: x["mtime"])
+    d["entries"].sort(key=lambda x: x["mtime"], reverse=True)
     d["entries"] = d["entries"][offset:offset + 5]
 
     return d
