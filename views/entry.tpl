@@ -20,7 +20,7 @@
 %include entrydiv **entry
   </div>
 
-%include footer
+%include footer preptime=time
 </div>
 </body>
 </html>

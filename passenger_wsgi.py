@@ -7,6 +7,7 @@ import glob
 import operator
 import os
 import sys
+import time
 
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
@@ -19,7 +20,7 @@ title = "Corbin Simpson ~ Most awesome, dude!"
 
 def preamble():
     """Return a dictionary with items used by all views."""
-    return {"title": title}
+    return {"title": title, "time": time.time()}
 
 def linkify(text):
     """Find and linkify URLs embedded in a chunk of text."""
