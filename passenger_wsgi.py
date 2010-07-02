@@ -17,6 +17,10 @@ bottle.debug(True)
 
 title = "Corbin Simpson ~ Most awesome, dude!"
 
+def preamble():
+    """Return a dictionary with items used by all views."""
+    return {"title": title}
+
 def linkify(text):
     """Find and linkify URLs embedded in a chunk of text."""
     words = text.split()
@@ -54,18 +58,22 @@ def static_music(filename):
 @bottle.route("/entry/:name")
 @bottle.view("entry")
 def entry(name):
+    d = preamble()
+
     try:
-        d = entry_dict("%s.entry" % name)
-        return {"title": title, "entry": d}
+        d["entry"] = entry_dict("%s.entry" % name)
     except OSError:
         bottle.abort(404, "The desired entry does not exist.")
+
+    return d
 
 @bottle.route("/")
 @bottle.route("/index")
 @bottle.route("/index/:page")
 @bottle.view("index")
 def index(page=0):
-    d = {"title": title, "entries" : list()}
+    d = preamble()
+    d["entries"] = list()
     offset = page * 5
 
     for name in glob.glob("*.entry"):
@@ -78,7 +86,8 @@ def index(page=0):
 @bottle.route("/music")
 @bottle.view("music")
 def music():
-    d = {"title": title, "albums": collections.defaultdict(list)}
+    d = preamble()
+    d["albums"] = collections.defaultdict(list)
 
     for name in glob.glob("music/*.ogg"):
         info = mutagen.oggvorbis.OggVorbis(name)
