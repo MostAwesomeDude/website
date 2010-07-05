@@ -5,7 +5,7 @@
 
 <div id="header">
   <div id="header-left">
-    <img src= "/static/matrix-keys.png" alt="Home" id="logo" name="logo" />
+    <img src= "/static/matrix-keys.png" alt="Home" id="logo" />
   </div>
 
   <div id="header-right">
