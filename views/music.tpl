@@ -19,5 +19,8 @@
 
 %include footer preptime=time
 </div>
+
+%include valid
+
 </body>
 </html>

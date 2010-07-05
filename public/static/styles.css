@@ -70,3 +70,12 @@ p a {
     font-size: smaller;
     text-align: center;
 }
+
+#valid {
+    position: relative;
+    margin: 5px;
+
+    clear: both;
+
+    text-align: right;
+}
