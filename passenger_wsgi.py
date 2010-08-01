@@ -13,6 +13,8 @@ sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
 import bottle
 import mutagen.oggvorbis
+import simplejson
+import twitter
 
 bottle.debug(True)
 
@@ -55,6 +57,19 @@ def static(filename):
 @bottle.route("/music/:filename")
 def static_music(filename):
     return bottle.static_file(filename, root="music")
+
+@bottle.post("/twitter")
+def tweet():
+    payload = bottle.request.forms.get("payload")
+    payload = simplejson.loads(payload)
+    name = payload["repository"]["name"]
+    head = payload["ref"].split("/")[-1]
+    message = "$ (cd %s; git push github %s)" % (name, head)
+
+    api = twitter.Api(username="corbinsimpson", password=password)
+    api.PostUpdate(message)
+
+    return "Shazam!"
 
 @bottle.route("/entry/:name")
 @bottle.view("entry")
