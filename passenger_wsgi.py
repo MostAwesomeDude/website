@@ -13,13 +13,10 @@ interpreter = os.path.expanduser("~/local/bin/python")
 if sys.executable != interpreter:
     os.execl(interpreter, interpreter, *sys.argv)
 
-import simplejson
-import twitter
-
-sys.path.append(os.path.dirname(os.path.realpath(__file__)))
-
 import bottle
 import mutagen.oggvorbis
+import simplejson
+import twitter
 
 bottle.debug(True)
 
