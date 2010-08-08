@@ -1,6 +1,10 @@
-  <!-- title>{{"%s ~ %s" % (title, entry["headline"])}}</title -->
 {% extends "site.html" %}
+
 {% from "entrydiv.html" import print_entry %}
+{% block title %}
+{{ "%s ~ %s" % (title, entry["headline"]) }}
+{% endblock %}
+
 {% block main %}
   {{ print_entry(entry["name"], entry["headline"], entry["paragraphs"]) }}
   {{ super() }}

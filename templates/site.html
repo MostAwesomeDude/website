@@ -7,7 +7,11 @@
   "HTML Tidy for Linux (vers 7 December 2008), see www.w3.org">
   <link rel="stylesheet" type="text/css" href="/static/styles.css">
 
-  <title>{{title}}</title>
+  <title>
+    {% block title %}
+    {{ title }}
+    {% endblock %}
+  </title>
 </head>
 
 <body>
