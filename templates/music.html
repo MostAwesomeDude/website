@@ -4,7 +4,8 @@
     <h2>{{"%s (%s)" % album}}</h2>
     <ul>
     {% for song in songs %}
-      <li>{{ ('<a href="/%s">%s</a>' % song[0:2])|safe }}</li>
+      <li>{{ ('<a href="%s">%s</a>' % (url_for("static_music",
+             filename=song[0]), song[1]))|safe }}</li>
     {% endfor %}
     </ul>
   {% endfor %}
