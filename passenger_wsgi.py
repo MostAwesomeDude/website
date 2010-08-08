@@ -24,9 +24,20 @@ app.use_x_sendfile = False
 
 title = "Corbin Simpson ~ Most awesome, dude!"
 
+@app.context_processor
 def preamble():
-    """Return a dictionary with items used by all views."""
-    return {"title": title, "time": time.time(), "datetime": datetime}
+    """
+    Return a dictionary with items used by all views.
+
+    The decorator on this function's declaration makes its return values
+    become injected into all Jinja contexts.
+    """
+
+    return {
+        "title": title,
+        #"time": time.time(),
+        "datetime": datetime,
+    }
 
 def linkify(text):
     """Find and linkify URLs embedded in a chunk of text."""
