@@ -14,9 +14,6 @@
 <div id="body">
 %import bottle
 
-%home = "/"
-%music = "/music"
-
   <div id="header">
     <div id="header-left">
       <img src= "/static/matrix-keys.png" alt="Home" id="logo" />
@@ -41,9 +38,8 @@
   </div>
 
   <div id="main">
-{% for entry in entries: %}
-  {% include "entrydiv.html" %} **entry
-{% endfor %}
+    {% block main %}
+    {% endblock %}
   </div>
 
 <div id="footer">
