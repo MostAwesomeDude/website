@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content=
+  "HTML Tidy for Linux (vers 7 December 2008), see www.w3.org">
+  <link rel="stylesheet" type="text/css" href="/static/styles.css">
+
+  <title>{{title}}</title>
+</head>
+
+<body>
+<div id="body">
+%import bottle
+
+%home = "/"
+%music = "/music"
+
+  <div id="header">
+    <div id="header-left">
+      <img src= "/static/matrix-keys.png" alt="Home" id="logo" />
+    </div>
+
+    <div id="header-right">
+      <a href="http://www.ohloh.net/accounts/34038?ref=Detailed"
+      target="_blank"><img style="border:none;" height="35" width="191" src=
+      "http://www.ohloh.net/accounts/34038/widgets/account_detailed.gif"
+      alt="View ohloh profile" title="View ohloh profile"></a>
+      <ul>
+        <li><a href="{{ url_for("music") }}">Music</a></li>
+      </ul>
+    </div>
+
+    <div id="header-center">
+      <h1 id='site-name'>
+        <a href="{{ url_for("index") }}" title="Home">Corbin Simpson</a>
+      </h1>
+    Most awesome, dude!
+    </div>
+  </div>
+
+  <div id="main">
+{% for entry in entries: %}
+  {% include "entrydiv.html" %} **entry
+{% endfor %}
+  </div>
+
+{% include "footer.html" %} preptime=time
+</div>
+
+{% include "valid.html" %}
+
+<!--
+To view, :s/\~/-/g
+~~~~~BEGIN GEEK CODE BLOCK~~~~~
+Version: 3.1
+GMU/CS/CM d s+:++ a~~ C+++++ L++++ Py+++$ E~~~ W+++ !N w~ M~~ PS++ PE~ Y+
+PGP+ t+ X~ R* !tv b+++ DI+ G e* r++ r++ y+++**?
+~~~~~~END GEEK CODE BLOCK~~~~~~
+-->
+</body>
+</html>

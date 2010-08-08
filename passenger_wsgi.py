@@ -3,6 +3,7 @@
 from __future__ import with_statement
 
 import collections
+import datetime
 import glob
 import operator
 import os
@@ -13,18 +14,19 @@ interpreter = os.path.expanduser("~/local/bin/python")
 if sys.executable != interpreter:
     os.execl(interpreter, interpreter, *sys.argv)
 
-import bottle
+import flask
 import mutagen.oggvorbis
 import simplejson
 import twitter
 
-bottle.debug(True)
+app = flask.Flask(__name__)
+app.use_x_sendfile = False
 
 title = "Corbin Simpson ~ Most awesome, dude!"
 
 def preamble():
     """Return a dictionary with items used by all views."""
-    return {"title": title, "time": time.time()}
+    return {"title": title, "time": time.time(), "datetime": datetime}
 
 def linkify(text):
     """Find and linkify URLs embedded in a chunk of text."""
@@ -69,17 +71,17 @@ def entry_dict(name):
 
     return d
 
-@bottle.route("/static/:filename")
+@app.route("/static/:filename")
 def static(filename):
-    return bottle.static_file(filename, root="public/static")
+    return flask.send_from_directory("public/static", filename)
 
-@bottle.route("/music/:filename")
+@app.route("/music/:filename")
 def static_music(filename):
-    return bottle.static_file(filename, root="music")
+    return flask.send_from_directory("music", filename)
 
-@bottle.post("/twitter")
+@app.route("/twitter", methods=["POST"])
 def tweet():
-    payload = bottle.request.forms.get("payload")
+    payload = flask.request.form["payload"]
     payload = simplejson.loads(payload)
     name = payload["repository"]["name"]
     head = payload["ref"].split("/")[-1]
@@ -90,8 +92,7 @@ def tweet():
 
     return "Shazam!"
 
-@bottle.route("/entry/:name")
-@bottle.view("entry")
+@app.route("/entry/:name")
 def entry(name):
     d = preamble()
 
@@ -100,14 +101,13 @@ def entry(name):
         entry = glob.glob("entries/*-%s.entry" % name)[0]
         d["entry"] = entry_dict(entry)
     except:
-        bottle.abort(404, "The desired entry does not exist.")
+        flask.abort(404, "The desired entry does not exist.")
 
-    return d
+    return flask.render_template("entry.html", **d)
 
-@bottle.route("/")
-@bottle.route("/index")
-@bottle.route("/index/:page")
-@bottle.view("index")
+@app.route("/")
+@app.route("/index")
+@app.route("/index/:page")
 def index(page=0):
     d = preamble()
     d["entries"] = list()
@@ -120,10 +120,9 @@ def index(page=0):
     d["entries"].sort(key=lambda x: x["mtime"], reverse=True)
     d["entries"] = d["entries"][offset:offset + 5]
 
-    return d
+    return flask.render_template("index.html", **d)
 
-@bottle.route("/music")
-@bottle.view("music")
+@app.route("/music")
 def music():
     d = preamble()
     d["albums"] = collections.defaultdict(list)
@@ -137,9 +136,7 @@ def music():
     for album in d["albums"].itervalues():
         album.sort(key=operator.itemgetter(2))
 
-    return d
-
-application = bottle.app()
+    return flask.render_template("music.html", **d)
 
 if __name__ == "__main__":
-    bottle.run(app=application)
+    app.run(debug=True)
