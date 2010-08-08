@@ -19,6 +19,10 @@ import mutagen.oggvorbis
 import PyRSS2Gen
 import simplejson
 import twitter
+import werkzeug
+import werkzeug.contrib.cache
+
+cache = werkzeug.contrib.cache.SimpleCache()
 
 app = flask.Flask(__name__)
 app.use_x_sendfile = False
@@ -119,10 +123,19 @@ def entry(name):
 
     return flask.render_template("entry.html", **d)
 
+def get_entries():
+    entries = cache.get("entries")
+    if find_new_entries() or not entries:
+        entries = [entry_dict(f) for f in glob.glob("entries/*.entry")]
+        entries.sort(key=lambda x: x["mtime"], reverse=True)
+        cache.set("entries", entries)
+
+    return entries
+
 @app.route("/rss.xml")
 def rss():
-    entries = [entry_dict(f) for f in glob.glob("entries/*.entry")]
-    entries.sort(key=lambda x: x["mtime"], reverse=True)
+    entries = get_entries()
+
     items = []
     for entry in entries:
         url = flask.url_for("entry", name=entry["name"], _external=True)
@@ -151,12 +164,9 @@ def index(page=0):
     d["entries"] = list()
     offset = page * 5
 
-    find_new_entries()
+    entries = get_entries()
 
-    for f in glob.glob("entries/*.entry"):
-        d["entries"].append(entry_dict(f))
-    d["entries"].sort(key=lambda x: x["mtime"], reverse=True)
-    d["entries"] = d["entries"][offset:offset + 5]
+    d["entries"] = entries[offset:offset + 5]
 
     return flask.render_template("index.html", **d)
 
