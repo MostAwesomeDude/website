@@ -1,15 +1,15 @@
-%url = "/entry/%s" % name
-
+{% macro print_entry(name, headline, paragraphs) %}
 <h2 class="title">
 <a href="{{ url_for("entry", name=name) }}">{{ headline }}</a>
 </h2>
 <div class="content">
-%for paragraph in paragraphs:
+{% for paragraph in paragraphs %}
 <p>{{ paragraph|safe }}</p>
-%end
+{% endfor %}
 <p>~ C.</p>
 <p>Created on {# datetime.datetime.fromtimestamp(ctime).strftime("%b %d, %Y") #}</p>
 {% if mtime != ctime: %}
 <p>Last modified on {# datetime.datetime.fromtimestamp(mtime).strftime("%b %d, %Y") #}</p>
 {% endif %}
 </div>
+{% endmacro %}
