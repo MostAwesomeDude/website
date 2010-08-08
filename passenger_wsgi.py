@@ -107,7 +107,7 @@ def tweet():
 
 @app.route("/entry/<name>")
 def entry(name):
-    d = preamble()
+    d = {}
 
     try:
         # Get the actual filename in entries/
@@ -122,7 +122,7 @@ def entry(name):
 @app.route("/index")
 @app.route("/index/<page>")
 def index(page=0):
-    d = preamble()
+    d = {}
     d["entries"] = list()
     offset = page * 5
 
@@ -137,7 +137,7 @@ def index(page=0):
 
 @app.route("/music")
 def music():
-    d = preamble()
+    d = {}
     d["albums"] = collections.defaultdict(list)
 
     for name in glob.glob("music/*.ogg"):
