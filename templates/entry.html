@@ -1,11 +1,12 @@
 {% extends "site.html" %}
 
-{% from "entrydiv.html" import print_entry %}
+{% from "entrydiv.html" import print_entry with context %}
+
 {% block title %}
 {{ "%s ~ %s" % (title, entry["headline"]) }}
 {% endblock %}
 
 {% block main %}
-  {{ print_entry(entry["name"], entry["headline"], entry["paragraphs"]) }}
+  {{ print_entry(entry) }}
   {{ super() }}
 {% endblock %}

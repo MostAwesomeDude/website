@@ -1,8 +1,8 @@
 {% extends "site.html" %}
-{% from "entrydiv.html" import print_entry %}
+{% from "entrydiv.html" import print_entry with context %}
 {% block main %}
   {{ super() }}
   {% for entry in entries: %}
-    {{ print_entry(entry["name"], entry["headline"], entry["paragraphs"]) }}
+    {{ print_entry(entry) }}
   {% endfor %}
 {% endblock %}

@@ -1,15 +1,22 @@
-{% macro print_entry(name, headline, paragraphs) %}
+{% macro print_entry(entry) %}
 <h2 class="title">
-<a href="{{ url_for("entry", name=name) }}">{{ headline }}</a>
+  <a href="{{ url_for("entry", name=entry["name"]) }}">
+    {{ entry["headline"] }}
+  </a>
 </h2>
+
 <div class="content">
-{% for paragraph in paragraphs %}
-<p>{{ paragraph|safe }}</p>
-{% endfor %}
-<p>~ C.</p>
-<p>Created on {# datetime.datetime.fromtimestamp(ctime).strftime("%b %d, %Y") #}</p>
-{% if mtime != ctime: %}
-<p>Last modified on {# datetime.datetime.fromtimestamp(mtime).strftime("%b %d, %Y") #}</p>
-{% endif %}
+  {% for paragraph in entry["paragraphs"] %}
+    <p>{{ paragraph|safe }}</p>
+  {% endfor %}
+  <p>~ C.</p>
+  <p>Created on
+    {{ datetime.datetime.fromtimestamp(entry["ctime"]).strftime("%b %d, %Y") }}
+  </p>
+  {% if entry["mtime"] != entry["ctime"] %}
+  <p>Last modified on
+    {{ datetime.datetime.fromtimestamp(entry["mtime"]).strftime("%b %d, %Y") }}
+  </p>
+  {% endif %}
 </div>
 {% endmacro %}
