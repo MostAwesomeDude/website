@@ -16,6 +16,7 @@ if sys.executable != interpreter:
 
 import flask
 import mutagen.oggvorbis
+import PyRSS2Gen
 import simplejson
 import twitter
 
@@ -117,6 +118,30 @@ def entry(name):
         flask.abort(404, "The desired entry does not exist.")
 
     return flask.render_template("entry.html", **d)
+
+@app.route("/rss.xml")
+def rss():
+    entries = [entry_dict(f) for f in glob.glob("entries/*.entry")]
+    entries.sort(key=lambda x: x["mtime"], reverse=True)
+    items = []
+    for entry in entries:
+        url = flask.url_for("entry", name=entry["name"], _external=True)
+        items.append(PyRSS2Gen.RSSItem(
+            title=entry["headline"],
+            link = url,
+            guid = PyRSS2Gen.Guid(url),
+            description = entry["paragraphs"][0],
+            pubDate = datetime.datetime.fromtimestamp(entry["ctime"])
+        ))
+    rss = PyRSS2Gen.RSS2(
+        title=title,
+        link=flask.url_for("index"),
+        description="Party on, dudes!",
+        lastBuildDate=datetime.datetime.now(),
+        items=items
+    )
+    return rss.to_xml()
+
 
 @app.route("/")
 @app.route("/index")
