@@ -34,9 +34,11 @@ def preamble():
     """
 
     return {
-        "title": title,
-        #"time": time.time(),
         "datetime": datetime,
+        "time": time,
+
+        "title": title,
+        "starting_time": time.time(),
     }
 
 def linkify(text):

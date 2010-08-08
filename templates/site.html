@@ -16,7 +16,6 @@
 
 <body>
 <div id="body">
-%import bottle
 
   <div id="header">
     <div id="header-left">
@@ -52,7 +51,7 @@
   the jump the first time. Be excellent. Warning: Some experts
   believe that reading footnotes may cause undesired side
   effects.</p>
-  <p>Total preparation time: {#"%.4f" % (time - preptime)#}
+  <p>Total preparation time: {{ "%.4f" % (time.time() - starting_time) }}
   seconds</p>
 </div>
 </div>
@@ -73,5 +72,6 @@ GMU/CS/CM d s+:++ a~~ C+++++ L++++ Py+++$ E~~~ W+++ !N w~ M~~ PS++ PE~ Y+
 PGP+ t+ X~ R* !tv b+++ DI+ G e* r++ r++ y+++**?
 ~~~~~~END GEEK CODE BLOCK~~~~~~
 -->
+
 </body>
 </html>
