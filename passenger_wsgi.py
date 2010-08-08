@@ -34,14 +34,31 @@ def linkify(text):
             words[i] = '<a href="%s">%s</a>' % (word, word)
     return " ".join(words)
 
+def find_new_entries():
+    """Check for new entries, return whether any were found."""
+    retval = False
+    for entry in glob.glob("*.entry"):
+        ctime = os.stat(entry)[8]
+        os.rename(entry, "entries/%s-%s" % (ctime, entry))
+        retval = True
+    return retval
+
 def entry_dict(name):
-    """Get a template dict from a file name."""
+    """
+    Get a template dict from a file name.
+
+    Raises various exceptions if it cannot find the requested entry.
+    """
+
+    chaff, filename = name.split("/", 1)
+    ctime, entry_name = filename.split("-", 1)
+
     # Split off .entry
-    d = {"name": name[:-6]}
+    d = {"name": entry_name[:-6]}
 
     # os.stat(...)[8] is ctime, [9] is mtime
     stat = os.stat(name)
-    d["ctime"] = stat[8]
+    d["ctime"] = int(ctime)
     d["mtime"] = stat[9]
 
     with open(name, "r") as f:
@@ -79,8 +96,10 @@ def entry(name):
     d = preamble()
 
     try:
-        d["entry"] = entry_dict("%s.entry" % name)
-    except OSError:
+        # Get the actual filename in entries/
+        entry = glob.glob("entries/*-%s.entry" % name)[0]
+        d["entry"] = entry_dict(entry)
+    except:
         bottle.abort(404, "The desired entry does not exist.")
 
     return d
@@ -94,8 +113,10 @@ def index(page=0):
     d["entries"] = list()
     offset = page * 5
 
-    for name in glob.glob("*.entry"):
-        d["entries"].append(entry_dict(name))
+    find_new_entries()
+
+    for f in glob.glob("entries/*.entry"):
+        d["entries"].append(entry_dict(f))
     d["entries"].sort(key=lambda x: x["mtime"], reverse=True)
     d["entries"] = d["entries"][offset:offset + 5]
 
