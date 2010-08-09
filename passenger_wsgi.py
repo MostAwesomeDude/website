@@ -98,8 +98,9 @@ def tweet(message):
     Publish a message to Twitter.
     """
 
-    api = twitter.Api(username="corbinsimpson", password=password)
-    api.PostUpdate(message)
+    oauth = twitter.OAuth(token_key, token_secret,
+        consumer_key, consumer_secret)
+    twitter.Twitter(auth=oauth).statuses.update(status=message)
 
 @app.route("/static/music/<filename>")
 def static_music(filename):
