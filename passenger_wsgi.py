@@ -60,6 +60,10 @@ def find_new_entries():
     for entry in glob.glob("*.entry"):
         ctime = os.stat(entry)[8]
         os.rename(entry, "entries/%s-%s" % (ctime, entry))
+
+        message = "$ vi blog/%s ; echo \"Updated my blog. See %s\""
+        message = message % (entry, flask.url_for("entry", name=entry[:-6]))
+        tweet(message)
         retval = True
     return retval
 
@@ -89,6 +93,14 @@ def entry_dict(name):
 
     return d
 
+def tweet(message):
+    """
+    Publish a message to Twitter.
+    """
+
+    api = twitter.Api(username="corbinsimpson", password=password)
+    api.PostUpdate(message)
+
 @app.route("/static/music/<filename>")
 def static_music(filename):
     return flask.send_from_directory("music", filename)
@@ -98,15 +110,14 @@ def static(filename):
     return flask.send_from_directory("public/static", filename)
 
 @app.route("/twitter", methods=["POST"])
-def tweet():
+def github_tweet():
     payload = flask.request.form["payload"]
     payload = simplejson.loads(payload)
     name = payload["repository"]["name"]
     head = payload["ref"].split("/")[-1]
     message = "$ (cd %s; git push github %s)" % (name, head)
 
-    api = twitter.Api(username="corbinsimpson", password=password)
-    api.PostUpdate(message)
+    tweet(message)
 
     return "Shazam!"
 
