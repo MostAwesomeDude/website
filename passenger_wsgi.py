@@ -100,7 +100,10 @@ def tweet(message):
 
     oauth = twitter.OAuth(token_key, token_secret,
         consumer_key, consumer_secret)
-    twitter.Twitter(auth=oauth).statuses.update(status=message)
+    try:
+        twitter.Twitter(auth=oauth).statuses.update(status=message)
+    except twitter.TwitterError, e:
+        app.logger.error(e)
 
 @app.route("/static/music/<filename>")
 def static_music(filename):
