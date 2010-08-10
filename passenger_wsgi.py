@@ -15,6 +15,8 @@ if sys.executable != interpreter:
     os.execl(interpreter, interpreter, *sys.argv)
 
 import flask
+import lxml.html
+import lxml.html.clean
 import mutagen.oggvorbis
 import PyRSS2Gen
 import simplejson
@@ -45,14 +47,6 @@ def preamble():
         "title": title,
         "starting_time": time.time(),
     }
-
-def linkify(text):
-    """Find and linkify URLs embedded in a chunk of text."""
-    words = text.split()
-    for i, word in enumerate(words):
-        if word.startswith(("http://", "https://")):
-            words[i] = '<a href="%s">%s</a>' % (word, word)
-    return " ".join(words)
 
 def find_new_entries():
     """Check for new entries, return whether any were found."""
@@ -89,7 +83,8 @@ def entry_dict(name):
         d["paragraphs"] = [i.strip() for i in f.read().split("\n\n")]
 
     d["headline"] = d["paragraphs"].pop(0)
-    d["paragraphs"] = [linkify(i) for i in d["paragraphs"]]
+    d["paragraphs"] = [lxml.html.clean.autolink_html(i)
+        for i in d["paragraphs"]]
 
     return d
 
