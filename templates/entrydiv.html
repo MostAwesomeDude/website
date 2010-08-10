@@ -7,7 +7,7 @@
 
 <div class="content">
   {% for paragraph in entry["paragraphs"] %}
-    <p>{{ paragraph|safe }}</p>
+    {{ paragraph|safe }}
   {% endfor %}
   <p>~ C.</p>
   <p>Created on

@@ -18,6 +18,9 @@ import flask
 import lxml.html
 import lxml.html.clean
 import mutagen.oggvorbis
+import pygments
+import pygments.lexers
+import pygments.formatters
 import PyRSS2Gen
 import simplejson
 import twitter
@@ -80,11 +83,30 @@ def entry_dict(name):
     d["mtime"] = stat[9]
 
     with open(name, "r") as f:
-        d["paragraphs"] = [i.strip() for i in f.read().split("\n\n")]
+        paragraphs = [i.strip() for i in f.read().split("\n\n") if i]
 
-    d["headline"] = d["paragraphs"].pop(0)
-    d["paragraphs"] = [lxml.html.clean.autolink_html(i)
-        for i in d["paragraphs"]]
+    d["headline"] = paragraphs.pop(0)
+    d["paragraphs"] = []
+
+    for paragraph in paragraphs:
+        try:
+            element = lxml.html.fragment_fromstring(paragraph)
+            # Highlight <code class="..."> paragraphs
+            if element.tag == "code" and "class" in element.attrib:
+                try:
+                    lex = pygments.lexers.get_lexer_by_name(
+                        element.attrib["class"])
+                    element = lxml.html.fragment_fromstring(
+                        pygments.highlight(element.text, lex,
+                            pygments.formatters.HtmlFormatter()))
+                except pygments.util.ClassNotFound:
+                    pass
+        except lxml.etree.ParserError:
+            element = lxml.html.fragment_fromstring(paragraph,
+                create_parent="p")
+
+        lxml.html.clean.autolink(element)
+        d["paragraphs"].append(lxml.html.tostring(element))
 
     return d
 
