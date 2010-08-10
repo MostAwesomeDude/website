@@ -205,3 +205,7 @@ if __name__ == "__main__":
     app.run(debug=True)
 else:
     application = app
+    import logging
+    handler = logging.FileHandler("error.log")
+    handler.setLevel(logging.WARNING)
+    app.logger.addHandler(handler)
