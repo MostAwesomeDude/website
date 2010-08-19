@@ -14,6 +14,7 @@ interpreter = os.path.expanduser("~/local/bin/python")
 if sys.executable != interpreter:
     os.execl(interpreter, interpreter, *sys.argv)
 
+import docutils.core
 import flask
 import lxml.html
 import lxml.html.clean
@@ -50,6 +51,14 @@ def preamble():
         "title": title,
         "starting_time": time.time(),
     }
+
+@app.template_filter()
+def rst(s):
+    """
+    Convert a ReST string to an HTML fragment.
+    """
+
+    return docutils.core.publish_parts(s, writer_name="html")["fragment"]
 
 def find_new_entries():
     """Check for new entries, return whether any were found."""
