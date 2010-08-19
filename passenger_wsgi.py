@@ -58,7 +58,7 @@ def rst(s):
     Convert a ReST string to an HTML fragment.
     """
 
-    return docutils.core.publish_parts(s, writer_name="html")["fragment"]
+    return docutils.core.publish_parts(s, writer_name="html")["html_body"]
 
 def find_new_entries():
     """Check for new entries, return whether any were found."""
@@ -226,6 +226,16 @@ def music():
         album.sort(key=operator.itemgetter(2))
 
     return flask.render_template("music.html", **d)
+
+@app.route("/cst")
+def cst():
+
+    f = open("cst.rst", "r")
+    d = {"content": f.read()}
+
+    f.close()
+
+    return flask.render_template("cst.html", **d)
 
 if __name__ == "__main__":
     app.run(debug=True)
