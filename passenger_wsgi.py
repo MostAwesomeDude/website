@@ -228,8 +228,11 @@ def music():
     return flask.render_template("music.html", **d)
 
 @app.route("/cst")
-def cst():
+def redirect_cst():
+    return flask.redirect(flask.url_for("cst"), 301)
 
+@app.route("/copious-spare-time")
+def cst():
     f = open("cst.rst", "r")
     d = {"content": f.read()}
 
