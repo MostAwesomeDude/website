@@ -36,6 +36,7 @@ Paypal button.
 
    * Pylladium. Listed here because it relies on Gallium. Needs to be
      finished.
+   * Evergreen (r800) support.
 
  * PyFluidSynth. Already far ahead of the other Python-FluidSynth bindings,
    but at some point it should get API-complete.
@@ -55,6 +56,17 @@ Paypal button.
      out there. A good, Linux-style set of platform drivers and platform
      support should be written at some point. Currently stalled on getting my
      Didj back in working order, or obtaining an Explorer.
+
+     * The Didj and Explorer machine files need to have
+       .video_start/.video_end filled out. This fixes the current problematic
+       video setup, where VRAM isn't known to Linux but is instead reserved by
+       limiting the total sytem memory. This should allow us to remove the
+       entire configurable memory system and switch to standard RAM
+       autodetection.
+
+     * The GPIO pins have a strange interrupt-sharing scheme. Other platforms
+       use virtual interrupts and an interrupt demuxer; this is completely
+       viable for Pollux as well.
 
    * KMS.
 
@@ -77,8 +89,7 @@ not **that** bored or because it doesn't need updates.
 
  * Hackabot. I didn't write this, and I don't need to write anything else for
    it. Mike's maintaining it and doing just fine.
- * Gallium r300 and r600 drivers. Marek's maintaining r300g *de facto*, and
-   Jerome's r600g ended up getting merged instead of mine. 
+ * Gallium r300 driver. Dave and Marek are maintaining r300g *de facto*.
  * Kong. Nothing more to write, I think.
  * Tiger. Ditto.
  * Dioxide. Porting the last of it to CSound right now, and once that's done,
