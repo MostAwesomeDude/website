@@ -31,7 +31,7 @@ Paypal button.
      * Consider adapting the current C header comments into the documentation,
        to avoid having to rewrite the original comments in ReST.
      * In addition to a technical overview and API, document some examples or
-       other forms of developer braindump in order to provide more useful
+       other forms of developer brain dump in order to provide more useful
        documentation to newbies.
 
    * Pylladium. Listed here because it relies on Gallium. Needs to be
@@ -60,9 +60,9 @@ Paypal button.
      * The Didj and Explorer machine files need to have
        .video_start/.video_end filled out. This fixes the current problematic
        video setup, where VRAM isn't known to Linux but is instead reserved by
-       limiting the total sytem memory. This should allow us to remove the
+       limiting the total system memory. This should allow us to remove the
        entire configurable memory system and switch to standard RAM
-       autodetection.
+       auto-detection.
 
      * The GPIO pins have a strange interrupt-sharing scheme. Other platforms
        use virtual interrupts and an interrupt demuxer; this is completely
@@ -80,6 +80,10 @@ Paypal button.
        drivers could be written once the kernel backend is in place. This is
        definitely a non-trivial task since the documentation for the chipset
        is sparse and almost entirely in C.
+     * Matrox G450 and other G-series chipsets. There's a lot of code
+       consolidation that could happen here. Anybody tackling this would get
+       to experience the joyful adventure of making the Matrox DRI work again
+       as well.
 
 Maintenance
 -----------
