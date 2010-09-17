@@ -68,7 +68,8 @@ def find_new_entries():
         os.rename(entry, "entries/%s-%s" % (ctime, entry))
 
         message = "$ vi blog/%s ; echo \"Updated my blog. See %s\""
-        message = message % (entry, flask.url_for("entry", name=entry[:-6]))
+        url = flask.url_for("entry", name=entry[:-6], _external=True)
+        message = message % (entry, url)
         tweet(message)
         retval = True
     return retval
