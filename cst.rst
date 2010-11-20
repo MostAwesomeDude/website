@@ -11,9 +11,9 @@ Stuff in this category will eventually be finished simply because I'm getting
 paid for it, which guarantees that a large, fixed amount of my time is
 dedicated to it.
 
- * Pydra. Listed here for completeness and boss appeasement, since Pydra
-   progress is tracked on the official bug tracker at
-   http://pydra-project.osuosl.org/.
+ * Ganeti Web Manager. http://code.osuosl.org/projects/ganeti-webmgr
+ * Django Object Permissions.
+   http://code.osuosl.org/projects/object-permissions
 
 Unpaid
 ------
@@ -22,6 +22,9 @@ Stuff here is almost completely boredom-motivated. If you want to see
 something move up on my list of priorities, you should click on my nonexistent
 Paypal button.
 
+ * Beta. I happen to *like* working on Beta, so odds are good that this is
+   going to be where most of my spare time goes, at least for the next few
+   months. Beta's todo list is in its readme.
  * Gallium.
 
    * Galahad. Just about every assert in driver code should be moved up to the
@@ -63,7 +66,6 @@ Paypal button.
        limiting the total system memory. This should allow us to remove the
        entire configurable memory system and switch to standard RAM
        auto-detection.
-
      * The GPIO pins have a strange interrupt-sharing scheme. Other platforms
        use virtual interrupts and an interrupt demuxer; this is completely
        viable for Pollux as well.
@@ -101,5 +103,9 @@ not **that** bored or because it doesn't need updates.
  * alsa-patch-bay. I have no contact from original upstream, no contact from
    distros that don't have it, etc. Might change at some point.
  * utripper. It's just sitting there, really.
- * magicpoint. Ditto.
+ * magicpoint. Did a lot of work, but it's still not to the point where I
+   would make a new release of it. Maybe someday when I have a lot more time
+   and the gumption to rewrite some of the worst parts.
  * ttk. Meh.
+ * Pydra. http://pydra-project.osuosl.org/ and
+   http://code.osuosl.org/projects/pydra
