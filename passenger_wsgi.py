@@ -120,10 +120,18 @@ def entry_dict(name):
 
     return d
 
+previous_message = ""
+
 def tweet(message):
     """
     Publish a message to Twitter.
     """
+
+    global previous_message
+    if message == previous_message:
+        return
+
+    previous_message = message
 
     oauth = twitter.OAuth(token_key, token_secret,
         consumer_key, consumer_secret)
