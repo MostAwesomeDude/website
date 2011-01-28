@@ -1,8 +1,21 @@
 {% extends "site.html" %}
 {% from "entrydiv.html" import print_entry with context %}
+{% macro print_pagination(page, count) %}
+<div class="pagination">
+  {% if page > 0: %}
+    <a href="{{ url_for("index", page=page - 1) }}">{{ "<< %d" % page }}</a>
+  {% endif %}
+  {% if page < page_count %}
+    <a href="{{ url_for("index", page=page + 1) }}">{{ "%d >>" % (page + 2) }}
+    </a>
+  {% endif %}
+</div>
+{% endmacro %}
 {% block main %}
   {{ super() }}
+  {{ print_pagination(page, page_count) }}
   {% for entry in entries: %}
     {{ print_entry(entry) }}
   {% endfor %}
+  {{ print_pagination(page, page_count) }}
 {% endblock %}
