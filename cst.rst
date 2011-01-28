@@ -14,6 +14,8 @@ dedicated to it.
  * Ganeti Web Manager. http://code.osuosl.org/projects/ganeti-webmgr
  * Django Object Permissions.
    http://code.osuosl.org/projects/object-permissions
+ * Twisted VNC Authentication Proxy.
+   http://code.osuosl.org/projects/twisted-vncauthproxy
 
 Unpaid
 ------
@@ -22,13 +24,13 @@ Stuff here is almost completely boredom-motivated. If you want to see
 something move up on my list of priorities, you should click on my nonexistent
 Paypal button.
 
- * Beta. I happen to *like* working on Beta, so odds are good that this is
+ * Bravo. I happen to *like* working on Bravo, so odds are good that this is
    going to be where most of my spare time goes, at least for the next few
-   months. Beta's todo list is in its readme.
+   months. Bravo's todo list is in its readme.
  * Gallium.
 
    * Galahad. Just about every assert in driver code should be moved up to the
-     Galahad layer and shared between all drivers.
+     Galahad layer and shared between all drivers. This might already be done.
    * Docs. Gallium's docs aren't API-complete or feature-complete.
 
      * Consider adapting the current C header comments into the documentation,
@@ -45,13 +47,16 @@ Paypal button.
    but at some point it should get API-complete.
 
    * For that matter, Salsa needs to be completed, since that was the original
-     reason for developing PyFluidSynth.
+     reason for developing PyFluidSynth. Salsa's unfortunately on hiatus, but
+     all the Salsa-related art and music is still on schedule.
 
  * DarkLight. Possibly the most important thing on the unpaid list.
 
    * Finish the GUI. It's really not that hard of a task.
    * Convince people to deploy it, and start stress-testing it with real data.
    * Anything else in the README; there's plenty of things to go after.
+   * Rewrite the wire protocol to be based on something useful, like, say,
+     AMP.
 
  * Linux. A variety of projects await.
 
@@ -73,11 +78,11 @@ Paypal button.
    * KMS.
 
      * ATI Rage 128. Can be done inside the current radeon kernel module.
-       Would require userspace updates. Currently stalled on getting my r128
-       to actually boot.
+       Would require userspace updates. I have experimental patches for this
+       that need to be solidified and sent upstream.
      * Voodoo Banshee. Would require userspace updates, but be so gratifying.
-       James Simmons has already started on this. Currently stalled on getting
-       my older AGP board, the only one that fits the Banshee, booting again.
+       James Simmons has already started on this. I now have multiple Voodoos,
+       so nothing's really standing in the way.
      * XGI Volari. Supposedly a Direct3D 9-class chipset, meaning that Gallium
        drivers could be written once the kernel backend is in place. This is
        definitely a non-trivial task since the documentation for the chipset
@@ -86,6 +91,7 @@ Paypal button.
        consolidation that could happen here. Anybody tackling this would get
        to experience the joyful adventure of making the Matrox DRI work again
        as well.
+     * SiS USB adapters.
 
 Maintenance
 -----------
@@ -96,17 +102,18 @@ not **that** bored or because it doesn't need updates.
  * Hackabot. I didn't write this, and I don't need to write anything else for
    it. Mike's maintaining it and doing just fine.
  * Gallium r300 driver. Dave and Marek are maintaining r300g *de facto*.
- * Kong. Nothing more to write, I think.
+ * Kong. Nothing more to write, I think. Additionally, I don't care about it
+   anymore.
  * Tiger. Ditto.
- * Dioxide. Porting the last of it to CSound right now, and once that's done,
-   further development probably won't affect the old codebase.
  * alsa-patch-bay. I have no contact from original upstream, no contact from
-   distros that don't have it, etc. Might change at some point.
- * utripper. It's just sitting there, really.
+   distros that don't have it, etc. The Fedora bug's started moving again.
+ * utripper. It's just sitting there, really. Talk with the John guys
+   indicates that there might not be much optimization possible, and more
+   modern trippers seem to be doing GPU-based stuff.
  * magicpoint. Did a lot of work, but it's still not to the point where I
    would make a new release of it. Maybe someday when I have a lot more time
    and the gumption to rewrite some of the worst parts.
- * ttk. Meh.
+ * ttk. Meh. There's no longer any point to this.
  * Pydra. http://pydra-project.osuosl.org/ and
    http://code.osuosl.org/projects/pydra
  * fsv. What was I thinking? It needs to be ported to GTK+2.
