@@ -3,10 +3,14 @@
 {% macro print_pagination(page, count) %}
 <div class="pagination">
   {% if page > 0: %}
-    <a href="{{ url_for("index", page=page - 1) }}">{{ "<< %d" % page }}</a>
+    <a href="{{ url_for("index", page=page - 1) }}">
+      {{ "<< Page %d" % page }}
+    </a>
   {% endif %}
+  ||
   {% if page < page_count %}
-    <a href="{{ url_for("index", page=page + 1) }}">{{ "%d >>" % (page + 2) }}
+    <a href="{{ url_for("index", page=page + 1) }}">
+      {{ "Page %d >>" % (page + 2) }}
     </a>
   {% endif %}
 </div>
