@@ -63,6 +63,21 @@ p a {
     background-color: #ffffff;
 }
 
+#twitter {
+    float: right;
+    margin: 15px;
+    padding: 5px;
+
+    border: 2px;
+    border-style: dashed;
+    border-color: #009900;
+}
+
+#twitter h2 {
+    margin: 0px;
+    text-align: center;
+}
+
 #footer {
     background-color: #000000;
     color: #ffffff;
