@@ -18,7 +18,6 @@ import docutils.core
 import flask
 import lxml.html
 import lxml.html.clean
-import mutagen.oggvorbis
 import pygments
 import pygments.lexers
 import pygments.formatters
@@ -222,22 +221,6 @@ def index(page=0):
     d["page_count"] = len(entries) / 5
 
     return flask.render_template("index.html", **d)
-
-@app.route("/music")
-def music():
-    d = {}
-    d["albums"] = collections.defaultdict(list)
-
-    for name in glob.glob("music/*.ogg"):
-        info = mutagen.oggvorbis.OggVorbis(name)
-        album = info["album"][0], info["date"][0]
-        track = name[6:], info["title"][0], info["tracknumber"][0]
-        d["albums"][album].append(track)
-
-    for album in d["albums"].itervalues():
-        album.sort(key=operator.itemgetter(2))
-
-    return flask.render_template("music.html", **d)
 
 @app.route("/cst")
 def redirect_cst():
