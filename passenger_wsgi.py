@@ -204,6 +204,9 @@ def rss():
     )
     return rss.to_xml()
 
+@app.route("/favicon.ico")
+def favicon():
+    flask.send_file("public/static/favicon.ico")
 
 @app.route("/")
 @app.route("/index")
