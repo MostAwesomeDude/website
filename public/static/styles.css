@@ -1,5 +1,5 @@
 body {
-    background-color: #666666;
+    background-color: #ffffff;
 
     font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
 }
@@ -15,7 +15,7 @@ a:hover {
 }
 
 h2 {
-    color: #009900;
+    color: #000099;
 }
 
 p {
@@ -23,7 +23,7 @@ p {
 }
 
 p a {
-    color: #009900;
+    color: #000099;
 }
 
 #body {
@@ -31,16 +31,18 @@ p a {
     margin: 10px auto;
     padding: 10px;
 
-    background-color: #000000;
+    background-color: #ffffff;
 }
 
 #header {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #000000;
 }
 
 #header-left {
-    float: left;
+    position: relative;
+    left: 0px;
+    top: 0px;
     width: 300px;
     margin: 0px;
 }
@@ -51,16 +53,12 @@ p a {
     margin: 0px;
 }
 
-#header-center {
-    margin-left: 300px;
-    margin-right: 200px;
-    padding: 1em;
-}
-
 #main {
     padding: 1em;
 
-    background-color: #ffffff;
+    background-color: #eeeeee;
+
+    clear: both;
 }
 
 #twitter {
@@ -69,8 +67,8 @@ p a {
     padding: 5px;
 
     border: 2px;
-    border-style: dashed;
-    border-color: #009900;
+    border-style: solid;
+    border-color: #000099;
 }
 
 #twitter h2 {
@@ -79,8 +77,8 @@ p a {
 }
 
 #footer {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #000000;
 
     font-size: smaller;
     text-align: center;
@@ -96,6 +94,6 @@ p a {
 }
 
 .pagination {
-    color: #119911;
+    color: #111199;
     text-align: right;
 }
