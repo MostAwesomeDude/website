@@ -213,7 +213,7 @@ def index(page=0):
     d["entries"] = list()
 
     entries = get_entries()
-    if page * 5 >= len(entries):
+    if len(entries) and page * 5 >= len(entries):
         flask.abort(404)
 
     d["entries"] = entries[page * 5:(page + 1) * 5]
