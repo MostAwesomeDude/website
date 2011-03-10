@@ -32,7 +32,7 @@ cache = werkzeug.contrib.cache.SimpleCache()
 app = flask.Flask(__name__)
 app.use_x_sendfile = False
 
-title = "Corbin Simpson ~ Most awesome, dude!"
+title = "Bravo"
 
 @app.context_processor
 def preamble():
@@ -221,19 +221,6 @@ def index(page=0):
     d["page_count"] = len(entries) / 5
 
     return flask.render_template("index.html", **d)
-
-@app.route("/cst")
-def redirect_cst():
-    return flask.redirect(flask.url_for("cst"), 301)
-
-@app.route("/copious-spare-time")
-def cst():
-    f = open("cst.rst", "r")
-    d = {"content": f.read()}
-
-    f.close()
-
-    return flask.render_template("cst.html", **d)
 
 if __name__ == "__main__":
     app.run(debug=True)
