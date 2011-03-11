@@ -4,13 +4,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="generator" content=
-  "HTML Tidy for Linux (vers 7 December 2008), see www.w3.org">
+  "HTML Tidy for Linux (vers 25 March 2009), see www.w3.org">
 
   <link rel="stylesheet" type="text/css"
     href="{{ url_for("static", filename="styles.css") }}">
   <link rel="stylesheet" type="text/css"
     href="{{ url_for("static", filename="highlighting.css") }}">
   <link rel="alternate" type="application/rss+xml" href="/rss.xml">
+  <link rel='stylesheet' type='text/css' href=
+  'http://fonts.googleapis.com/css?family=GFS+Neohellenic:bolditalic&amp;subset=greek'>
+  <link rel='stylesheet' type='text/css' href=
+  'http://fonts.googleapis.com/css?family=Candal'>
+
 
   <title>
     {% block title %}
@@ -20,29 +25,27 @@
 </head>
 
 <body>
-<div id="body">
-
-  <div id="header">
-    <div id="header-left">
-      <img src= "{{ url_for("static", filename="bravo-header.png") }}"
-        alt="Home" id="logo" />
-    </div>
-
-    <!--div id="header-right">
+  <div id="body">
+    <div id="header">
+      <div id="header-left">
+        <h1 style="font-size: 60pt; font-family: 'Candal'">
+        <span style=
+        "font-size: 200%; font-family: 'GFS Neohellenic'">&beta;</span>ravo</h1>
+      </div><!--div id="header-right">
 
     <script type="text/javascript"
     src="http://www.ohloh.net/p/486884/widgets/project_users.js?style=rainbow">
     </script>
     </div-->
+    </div>
 
-  </div>
-
-  <div id="main">
-    <div id="twitter">
-      <h2>Take a Bow</h2>
-      <script src="http://widgets.twimg.com/j/2/widget.js"></script>
-      <script>
-        new TWTR.Widget({
+    <div id="main">
+      <div id="twitter">
+        <h2>Take a Bow</h2><script src=
+        "http://widgets.twimg.com/j/2/widget.js" type=
+        "text/javascript">
+</script> <script type="text/javascript">
+new TWTR.Widget({
           version: 2,
           type: 'search',
           search: "#bravoserver",
@@ -71,32 +74,32 @@
             behavior: 'all'
           }
         }).render().start();
-      </script>
+        </script>
+      </div>
+
+      <div id="content">
+        {% block main %} {% endblock %}
+      </div>
     </div>
-    <div id="content">
-      {% block main %}
-      {% endblock %}
+
+    <div id="footer">
+      <p>All content is copyright Corbin Simpson and not to be used
+      without permission except where otherwise noted. Nobody makes
+      the jump the first time. Be excellent. Warning: Some experts
+      believe that reading footnotes may cause undesired side
+      effects.</p>
+
+      <p>Total preparation time:
+      {{ "%.4f" % (time.time() - starting_time) }} seconds</p>
     </div>
   </div>
 
-<div id="footer">
-  <p>All content is copyright Corbin Simpson and not to be used
-  without permission except where otherwise noted. Nobody makes
-  the jump the first time. Be excellent. Warning: Some experts
-  believe that reading footnotes may cause undesired side
-  effects.</p>
-  <p>Total preparation time: {{ "%.4f" % (time.time() - starting_time) }}
-  seconds</p>
-</div>
-</div>
-
-<div id="valid">
-  <a href="http://jigsaw.w3.org/css-validator/check/referer">
-    <img style="border:0;width:88px;height:31px"
-        src="http://jigsaw.w3.org/css-validator/images/vcss-blue"
-        alt="Valid CSS!" />
-  </a>
-</div>
-
+  <div id="valid">
+    <a href=
+    "http://jigsaw.w3.org/css-validator/check/referer"><img style=
+    "border:0;width:88px;height:31px" src=
+    "http://jigsaw.w3.org/css-validator/images/vcss-blue" alt=
+    "Valid CSS!"></a>
+  </div>
 </body>
 </html>
