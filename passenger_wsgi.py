@@ -126,6 +126,7 @@ def tweet(message):
     Publish a message to Twitter.
     """
 
+    return
     global previous_message
     if message == previous_message:
         return
