@@ -22,17 +22,20 @@ dedicated to it.
    http://code.osuosl.org/projects/object-permissions
  * Twisted VNC Authentication Proxy.
    http://code.osuosl.org/projects/twisted-vncauthproxy
+ * txWS. http://github.com/MostAwesomeDude/txWS
 
 Unpaid
 ------
 
 Stuff here is almost completely boredom-motivated. If you want to see
-something move up on my list of priorities, you should click on my nonexistent
-Paypal button.
+something move up on my list of priorities, you should click on my Paypal
+button and tell me in the notes what you like to see me working on.
 
  * Bravo. I happen to *like* working on Bravo, so odds are good that this is
    going to be where most of my spare time goes, at least for the next few
-   months. Bravo's todo list is in its readme.
+   months. Bravo's todo list is in its readme, and its issue tracker.
+ * DCoN. There's some special love being thrown at it right now, mostly around
+   Axiom.
  * Gallium.
 
    * Galahad. Just about every assert in driver code should be moved up to the
@@ -46,8 +49,7 @@ Paypal button.
        documentation to newbies.
 
    * Pylladium. Listed here because it relies on Gallium. Needs to be
-     finished.
-   * Evergreen (r800) support.
+     finished, although it might not matter that much these days.
 
  * PyFluidSynth. Already far ahead of the other Python-FluidSynth bindings,
    but at some point it should get API-complete.
@@ -61,8 +63,6 @@ Paypal button.
    * Finish the GUI. It's really not that hard of a task.
    * Convince people to deploy it, and start stress-testing it with real data.
    * Anything else in the README; there's plenty of things to go after.
-   * Rewrite the wire protocol to be based on something useful, like, say,
-     AMP.
 
  * Linux. A variety of projects await.
 
@@ -105,6 +105,13 @@ Maintenance
 I wrote this stuff, but I'm not touching it at the moment either because I'm
 not **that** bored or because it doesn't need updates.
 
+ * Construct. Full-on maintenance mode.
+
+Retired
+-------
+
+Never touching this again without good reason.
+
  * Hackabot. I didn't write this, and I don't need to write anything else for
    it. Mike's maintaining it and doing just fine.
  * Gallium r300 driver. Dave and Marek are maintaining r300g *de facto*.
@@ -116,10 +123,6 @@ not **that** bored or because it doesn't need updates.
  * utripper. It's just sitting there, really. Talk with the John guys
    indicates that there might not be much optimization possible, and more
    modern trippers seem to be doing GPU-based stuff.
- * magicpoint. Did a lot of work, but it's still not to the point where I
-   would make a new release of it. Maybe someday when I have a lot more time
-   and the gumption to rewrite some of the worst parts.
  * ttk. Meh. There's no longer any point to this.
  * Pydra. http://pydra-project.osuosl.org/ and
    http://code.osuosl.org/projects/pydra
- * fsv. What was I thinking? It needs to be ported to GTK+2.
