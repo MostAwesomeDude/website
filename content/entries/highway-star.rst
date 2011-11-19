@@ -4,11 +4,9 @@ category: entries
 datetime: 2011-08-09 02:03:29
 ---
 
-I have a <a href="http://en.wikipedia.org/wiki/Chromebook">Chromebook</a>.
-Specifically, a Samsung Series 5, courtesy of <a
-    href="http://google.com/">Google</a>. It's pretty snazzy, but what's
-really great is that the "Chrome OS" which it comes with is actually a
-modified <a href="http://www.gentoo.org/">Gentoo Linux</a>. Cool, right?
+I have a Chromebook_. Specifically, a Samsung Series 5, courtesy of Google_.
+It's pretty snazzy, but what's really great is that the "Chrome OS" which it
+comes with is actually a modified `Gentoo Linux`_. Cool, right?
 Unfortunately, the Chromebook is a bit too hobbled for generic Gentoo usage,
 but I will outline the steps I have taken towards getting mine to a point
 where I'm happy with it.
@@ -18,77 +16,72 @@ it's good to set a goal, so I'll outline my goal in terms of what I usually do
 on traveling laptops: Games and music. Since there's usually a pretty heavy
 limit on disk space, but plenty of bandwidth, I want to be able to access some
 kind of music stream, and as far as games, I'll go with a selection of small
-puzzles as well as classic emulators. In particular, I want to have <a
-    href="https://github.com/PromyLOPh/pianobar">Pianobar</a>
-(media-sound/pianobar), <a
-    href="http://www.chiark.greenend.org.uk/~sgtatham/puzzles/">Simon Tatham's
-    Puzzles</a> (games-puzzle/sgt-puzzles), and either <a
-    href="http://vba-m.com/">VBA-M</a> (games-emulation/vbam) or <a
-    href="http://zsnes.com/">ZSNES</a> (games-emulation/zsnes).
+puzzles as well as classic emulators. In particular, I want to have Pianobar_
+(media-sound/pianobar), `Simon Tatham's Puzzles`_ (games-puzzle/sgt-puzzles),
+and either VBA-M_ (games-emulation/vbam) or ZSNES_ (games-emulation/zsnes).
 
 First things first: Let's get access to the shell. Two keyboard commands to
 know (which have no mouse equivalents!) are the classic Alt+Tab, for switching
 between windows, as well as Alt+Shift+Tab for going through the window list
-backwards,  and also the common Ctrl+Alt+T, which spawns a shell. On a
+backwards, and also the common Ctrl+Alt+T, which spawns a shell. On a
 Chromebook, the shell provided by default is "crosh", a remarkably useless
 shell mostly provided for diagnostics. Crosh has a secret command, "shell",
-which spawns a real shell, bash! However, we can't get to it until <a
-    href="http://www.chromium.org/chromium-os/developer-information-for-chrome-os-devices/samsung-series-5-chromebook">Developer
-    Mode</a> has been enabled. After Developer Mode is enabled, crosh will now
+which spawns a real shell, bash! However, we can't get to it until `Developer
+Mode`_ has been enabled. After Developer Mode is enabled, crosh will now
 permit us to get a real shell, and the real fun can begin.
 
 As a user on the filesystem, we are always under the login "chronos". We can
-sudo freely and without limit; invocations like <tt>sudo -i</tt> to gain root
-shell access work as expected. Let's take a look at what's in the filesystem
-at the moment.
+sudo freely and without limit; invocations like ``sudo -i`` to gain root shell
+access work as expected. Let's take a look at what's in the filesystem at the
+moment.
 
 (Aside: If you just want to know how I got stuff working on my Chromebook,
 skip the next few paragraphs; I'm going to talk about my though processes and
 the current state of what I know about the machine. Interesting stuff,
 perhaps, but not really directly relevant to getting up and running.)
 
-<pre>
-chronos@localhost ~ $ mount
-rootfs on / type rootfs (rw)
-/dev/root on / type ext2 (ro,relatime)
-devtmpfs on /dev type devtmpfs (rw,size=970408k,nr_inodes=242602,mode=755)
-none on /proc type proc (rw,nosuid,nodev,noexec,relatime)
-none on /sys type sysfs (rw,nosuid,nodev,noexec,relatime)
-/tmp on /tmp type tmpfs (rw,nosuid,nodev,noexec,relatime)
-udev on /dev type tmpfs (rw,nosuid,noexec,relatime,mode=755)
-shmfs on /dev/shm type tmpfs (rw,nosuid,nodev,noexec,relatime)
-devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,gid=5,mode=620)
-/dev/sda1 on /mnt/stateful_partition type ext3
-(rw,nosuid,nodev,noexec,relatime,errors=continue,commit=600,data=ordered)
-/dev/sda1 on /var type ext3
-(rw,nosuid,nodev,noexec,relatime,errors=continue,commit=600,data=ordered)
-/dev/sda1 on /home type ext3
-(rw,nosuid,nodev,noexec,relatime,errors=continue,commit=600,data=ordered)
-varrun on /var/run type tmpfs (rw,nosuid,nodev,noexec,relatime,mode=755)
-varlock on /var/lock type tmpfs (rw,nosuid,nodev,noexec,relatime)
-/media on /media type tmpfs (rw,nosuid,nodev,noexec,relatime)
-debugfs on /sys/kernel/debug type debugfs (rw,relatime)
-cgroup on /tmp/cgroup/cpu type cgroup (rw,relatime,cpu)
-/home/.shadow/d72e888592600e3025a778270172192458d0a039/vault on
-/home/chronos/user type ecryptfs
-(rw,nosuid,nodev,relatime,ecryptfs_sig=6c1fcef0779bc58d,ecryptfs_fnek_sig=997328e527b573bc,ecryptfs_cipher=aes,ecryptfs_key_bytes=16,ecryptfs_unlink_sigs)
-chronos@localhost ~ $ df -h
-Filesystem            Size  Used Avail Use% Mounted on
-rootfs                837M  548M  290M  66% /
-/dev/root             837M  548M  290M  66% /
-devtmpfs              948M  472K  948M   1% /dev
-/tmp                  948M   24M  925M   3% /tmp
-udev                  948M  472K  948M   1% /dev
-shmfs                 948M  256K  948M   1% /dev/shm
-/dev/sda1              11G  3.4G  6.7G  34% /mnt/stateful_partition
-/dev/sda1              11G  3.4G  6.7G  34% /var
-/dev/sda1              11G  3.4G  6.7G  34% /home
-varrun                948M   68K  948M   1% /var/run
-varlock               948M     0  948M   0% /var/lock
-/media                948M     0  948M   0% /media
-/home/.shadow/d72e888592600e3025a778270172192458d0a039/vault
-                       11G  3.4G  6.7G  34% /home/chronos/user
-</pre>
+::
+
+    chronos@localhost ~ $ mount
+    rootfs on / type rootfs (rw)
+    /dev/root on / type ext2 (ro,relatime)
+    devtmpfs on /dev type devtmpfs (rw,size=970408k,nr_inodes=242602,mode=755)
+    none on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+    none on /sys type sysfs (rw,nosuid,nodev,noexec,relatime)
+    /tmp on /tmp type tmpfs (rw,nosuid,nodev,noexec,relatime)
+    udev on /dev type tmpfs (rw,nosuid,noexec,relatime,mode=755)
+    shmfs on /dev/shm type tmpfs (rw,nosuid,nodev,noexec,relatime)
+    devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,gid=5,mode=620)
+    /dev/sda1 on /mnt/stateful_partition type ext3
+    (rw,nosuid,nodev,noexec,relatime,errors=continue,commit=600,data=ordered)
+    /dev/sda1 on /var type ext3
+    (rw,nosuid,nodev,noexec,relatime,errors=continue,commit=600,data=ordered)
+    /dev/sda1 on /home type ext3
+    (rw,nosuid,nodev,noexec,relatime,errors=continue,commit=600,data=ordered)
+    varrun on /var/run type tmpfs (rw,nosuid,nodev,noexec,relatime,mode=755)
+    varlock on /var/lock type tmpfs (rw,nosuid,nodev,noexec,relatime)
+    /media on /media type tmpfs (rw,nosuid,nodev,noexec,relatime)
+    debugfs on /sys/kernel/debug type debugfs (rw,relatime)
+    cgroup on /tmp/cgroup/cpu type cgroup (rw,relatime,cpu)
+    /home/.shadow/d72e888592600e3025a778270172192458d0a039/vault on
+    /home/chronos/user type ecryptfs
+    (rw,nosuid,nodev,relatime,ecryptfs_sig=6c1fcef0779bc58d,ecryptfs_fnek_sig=997328e527b573bc,ecryptfs_cipher=aes,ecryptfs_key_bytes=16,ecryptfs_unlink_sigs)
+    chronos@localhost ~ $ df -h
+    Filesystem            Size  Used Avail Use% Mounted on
+    rootfs                837M  548M  290M  66% /
+    /dev/root             837M  548M  290M  66% /
+    devtmpfs              948M  472K  948M   1% /dev
+    /tmp                  948M   24M  925M   3% /tmp
+    udev                  948M  472K  948M   1% /dev
+    shmfs                 948M  256K  948M   1% /dev/shm
+    /dev/sda1              11G  3.4G  6.7G  34% /mnt/stateful_partition
+    /dev/sda1              11G  3.4G  6.7G  34% /var
+    /dev/sda1              11G  3.4G  6.7G  34% /home
+    varrun                948M   68K  948M   1% /var/run
+    varlock               948M     0  948M   0% /var/lock
+    /media                948M     0  948M   0% /media
+    /home/.shadow/d72e888592600e3025a778270172192458d0a039/vault
+                           11G  3.4G  6.7G  34% /home/chronos/user
 
 What a list of mounts! I'll try to explain. The rootfs and kernel each live on
 partitions not mounted during normal operation, and are generally reasonably
@@ -131,7 +124,7 @@ into a Gentoo environment! But what would we do in there? We can't install
 things directly onto the rootfs or stateful partition, and we can't change the
 partition table. Either one would wreck the Chrome OS boot pretty thoroughly.
 But, we could always go the brutish, lazy route, and simply have a chroot
-<em>in our home directory</em>. Getting at our Portage and compiler would be
+*in our home directory*. Getting at our Portage and compiler would be
 as easy as invoking chroot, and we could still have the rest of the system
 (Chrome, WiFi manager, battery monitor, terminal emulator, window manager) at
 our disposal. Excellent.
@@ -148,65 +141,57 @@ this. In fact, get comfortable being root; you will always be root in your
 chroot. I mean, seriously, why not? There's all the traditional reasons to not
 be root, but the Chrome OS is a brand-new world, a world where people can be
 root inside a chroot inside a cryptfs inside a single-user system inside
-<strong>the cloud</strong>.
+**the cloud**.
 
-You should have the <a
-    href="http://www.gentoo.org/proj/en/base/x86/chroot.xml">Gentoo Handbook's
-    Chroot Guide</a> open while you do this, as what we are doing is quite
-similar. The one catch is that you *must* be root in order to create all the
-device nodes. Once your chroot is in place, the following script will enter
-the chroot. Just put it in your home directory, <tt>chmod +x</tt> it, and
-we're almost ready to go!
+.. _Gentoo Handbook's Chroot Guide: http://www.gentoo.org/proj/en/base/x86/chroot.xml
 
-<script
-    src="https://gist.github.com/1128864.js?file=enter-chroot.sh"></script>
+You should have the `Gentoo Handbook's Chroot Guide`_ open while you do this,
+as what we are doing is quite similar. The one catch is that you *must* be
+root in order to create all the device nodes. Once your chroot is in place,
+the following script will enter the chroot: https://gist.github.com/1128864
+Just put it in your home directory, ``chmod +x`` it, and we're almost ready to
+go!
 
 Oops, wait, what's with this cryptic "bad interpreter" error? For security
 reasons, most filesystems are mounted noexec. Sadly, there's no good place to
 put a shell script to turn it off, so I instead encourage you to memorize
-<tt>mount -i -o remount,exec ~</tt>. It rolls right off the tongue! You only
-have to do this once, at boot, but you can't put it in the rootfs without
-alerting Chrome OS to our shenanigans. If Chrome OS gets ticked enough at our
-meddling, it will destroy the entire stateful partition, including the chroot.
-(If you want to keep your chroot on a USB drive or SD card, I would totally
+``mount -i -o remount,exec ~``. It rolls right off the tongue! You only have
+to do this once, at boot, but you can't put it in the rootfs without alerting
+Chrome OS to our shenanigans. If Chrome OS gets ticked enough at our meddling,
+it will destroy the entire stateful partition, including the chroot. (If you
+want to keep your chroot on a USB drive or SD card, I would totally
 understand!)
 
 There are a few more things required to get all of the things in the chroot
 working. Presumably you will eventually want to run applications which talk to
 the local X11 server; for that, you will need to add a single line to your
-.bashrc inside the chroot. I've reproduced my entire .bashrc here for
-completeness.
+.bashrc inside the chroot::
 
-<script
-    src="https://gist.github.com/1128864.js?file=.bashrc"></script>
+    export XAUTHORITY="/root/.Xauthority"
 
 So, now that we're inside our chroot, and have everything wired up, it's time
-to start experimenting. I've gone ahead and selected the following USE flags:
+to start experimenting. I've gone ahead and selected the following USE flags::
 
-<pre>
-USE="X alsa ao mmx opengl sse sse2 sse3 -cups -xscreensaver"
-</pre>
+    USE="X alsa ao mmx opengl sse sse2 sse3 -cups -xscreensaver"
 
-And here's the package list in my world file (/var/lib/portage/world):
+And here's the package list in my world file (/var/lib/portage/world)::
 
-<pre>
-app-admin/localepurge
-app-editors/vim
-app-misc/screen
-app-portage/eix
-app-portage/genlop
-app-portage/gentoolkit
-app-portage/ufed
-games-emulation/vbam
-games-emulation/zsnes
-games-puzzle/sgt-puzzles
-media-sound/pianobar
-net-im/pidgin
-x11-apps/mesa-progs
-x11-apps/xauth
-x11-apps/xdpyinfo
-x11-apps/xhost
-</pre>
+    app-admin/localepurge
+    app-editors/vim
+    app-misc/screen
+    app-portage/eix
+    app-portage/genlop
+    app-portage/gentoolkit
+    app-portage/ufed
+    games-emulation/vbam
+    games-emulation/zsnes
+    games-puzzle/sgt-puzzles
+    media-sound/pianobar
+    net-im/pidgin
+    x11-apps/mesa-progs
+    x11-apps/xauth
+    x11-apps/xdpyinfo
+    x11-apps/xhost
 
 You may notice that I emerged things I don't technically need. This is because
 I am a creature of habit, and several things nearly always make their way into
@@ -216,11 +201,20 @@ as long as you have set up .Xauthority as I have.
 
 You may also notice that I grabbed localepurge. I highly recommend trimming
 the fat from your chroot with localepurge; that and trimming the categories
-from your Portage tree (do you really need <tt>sci-*</tt>?) are going to save
+from your Portage tree (do you really need ``sci-*``?) are going to save
 around 500MiB if done zealously.
 
 With the current setup, pianobar Just Works. sgt-puzzles installs its binaries
 as games, so you will have to make sure that, when chrooted, your user has the
-games group set. This is the purpose of that mystical <tt>--groups=35</tt> on
-the chroot invocation -- 35 is the GID of the games group! This is definitely
-the cleanest solution. With that added, sgt-puzzles works. Two of four.
+games group set. This is the purpose of that mystical ``--groups=35`` on the
+chroot invocation -- 35 is the GID of the games group! This is definitely the
+cleanest solution. With that added, sgt-puzzles works. Two of four.
+
+.. _Chromebook: http://en.wikipedia.org/wiki/Chromebook
+.. _Google: http://google.com/
+.. _Gentoo Linux: http://www.gentoo.org/
+.. _Pianobar: https://github.com/PromyLOPh/pianobar
+.. _Simon Tatham's Puzzles: http://www.chiark.greenend.org.uk/~sgtatham/puzzles/
+.. _VBA-M: http://vba-m.com/
+.. _ZSNES: http://zsnes.com/
+.. _Developer Mode: http://www.chromium.org/chromium-os/developer-information-for-chrome-os-devices/samsung-series-5-chromebook

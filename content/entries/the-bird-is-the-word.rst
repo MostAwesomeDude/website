@@ -67,7 +67,7 @@ secret. Now just add the following to your client and you'll be set!
     twitter.Twitter(auth=oauth).statuses.update(status=message)
 
 The library follows the same pattern as the official Twitter API, so this is
-equivalent to requesting `statuses/update.json` with a `status` parameter.
+equivalent to requesting ``statuses/update.json`` with a ``status`` parameter.
 
 .. _my Github: http://github.com/MostAwesomeDude
 .. _python-twitter: http://code.google.com/p/python-twitter/
