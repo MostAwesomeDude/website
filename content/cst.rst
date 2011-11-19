@@ -1,7 +1,7 @@
 title: Copious Spare Time
-template: page
-url: /cst.html
-datetime: 2011-11-19 00:00:00
+type: generic
+slug: cst
+datetime: 2011-11-18 00:00:00
 ---
 
 Copious Spare Time
