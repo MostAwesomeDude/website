@@ -1,4 +1,8 @@
-Take a Bow
+title: Take a Bow
+type: entry
+category: entries
+datetime: 2011-03-10 05:48:12
+---
 
 Over the past few months, I've been working on a new server for <a
 href="http://minecraft.net/">Minecraft</a>, called <a

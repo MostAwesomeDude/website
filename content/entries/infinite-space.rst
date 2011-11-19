@@ -1,4 +1,8 @@
-Infinite Space
+title: Infinite Space
+type: entry
+category: entries
+datetime: 2010-09-24 01:59:24
+---
 
 I am releasing a small library that I have been working on in my spare time.
 Specifically, time spent in hotel rooms. <a

@@ -1,4 +1,8 @@
-Come Together
+title: Come Together
+type: entry
+category: entries
+datetime: 2010-07-05 01:34:50
+---
 
 I have cleaned out all of my old files from <a
 href="http://code.corbinsimpson.com/">my code-related domain</a> and put them

@@ -1,4 +1,8 @@
-Maiden Voyage
+title: Maiden Voyage
+type: entry
+category: entries
+datetime: 2010-06-25 18:41:19
+---
 
 Things have changed a bit around here, and hopefully for the better. I've
 replaced my old Drupal stack with a fairly slimmed-down piece of code based on

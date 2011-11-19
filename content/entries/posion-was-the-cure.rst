@@ -1,4 +1,8 @@
-Poison Was the Cure
+title: Poison Was the Cure
+type: entry
+category: entries
+datetime: 2011-10-03 10:16:59
+---
 
 <a href="http://glyph.twistedmatrix.com/">glyph</a> and I met for the first
 time a few weeks ago, and ever since, he's been asking me to do things. Write

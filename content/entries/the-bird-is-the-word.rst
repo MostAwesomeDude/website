@@ -1,4 +1,8 @@
-The Bird is the Word
+title: The Bird is the Word
+type: entry
+category: entries
+datetime: 2010-08-09 14:02:52
+---
 
 Twitter's apparently the rage these days. I've decided to get into it by
 posting updates to this site, pushes to my <a

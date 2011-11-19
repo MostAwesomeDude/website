@@ -1,4 +1,8 @@
-Theme of DCoN
+title: Theme of DCoN
+type: entry
+category: entries
+datetime: 2011-09-04 13:26:24
+---
 
 Some of you may remember the "Release Date: 2011" meme which we've been
 spreading for the past two years. We are proud to announce an actual piece of

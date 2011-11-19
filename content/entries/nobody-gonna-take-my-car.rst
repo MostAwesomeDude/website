@@ -1,4 +1,8 @@
-Nobody Gonna Take My Car
+title: Nobody Gonna Take My Car
+type: entry
+category: entries
+datetime: 2011-08-13 15:22:29
+---
 
 Hi! Just a quick status update on that crazy <a
     href="http://en.wikipedia.org/wiki/Chromebook">Chromebook</a> of mine.

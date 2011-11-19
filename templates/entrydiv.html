@@ -1,22 +1,13 @@
-{% macro print_entry(entry) %}
-<h2 class="title">
-  <a href="{{ url_for("entry", name=entry["name"]) }}">
-    {{ entry["headline"] }}
-  </a>
-</h2>
+{% macro print_entry(page) %}
+  <h2 class="title">
+    <a href="{{ page.url }}">
+      {{ page.title }}
+    </a>
+  </h2>
 
-<div class="content">
-  {% for paragraph in entry["paragraphs"] %}
-    {{ paragraph|safe }}
-  {% endfor %}
-  <p>~ C.</p>
-  <p>Created on
-    {{ datetime.datetime.fromtimestamp(entry["ctime"]).strftime("%b %d, %Y") }}
-  </p>
-  {% if entry["mtime"] != entry["ctime"] %}
-  <p>Last modified on
-    {{ datetime.datetime.fromtimestamp(entry["mtime"]).strftime("%b %d, %Y") }}
-  </p>
-  {% endif %}
-</div>
+  <div class="content">
+    {{ page.content }}
+    <p>~ C.</p>
+    <p>Last modified on {{ page.datetime }}</p>
+  </div>
 {% endmacro %}

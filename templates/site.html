@@ -7,9 +7,9 @@
   "HTML Tidy for Linux (vers 7 December 2008), see www.w3.org">
 
   <link rel="stylesheet" type="text/css"
-    href="{{ url_for("static", filename="styles.css") }}">
+    href="media/styles.css">
   <link rel="stylesheet" type="text/css"
-    href="{{ url_for("static", filename="highlighting.css") }}">
+    href="media/highlighting.css">
   <link rel="alternate" type="application/rss+xml" href="/rss.xml">
 
   <title>
@@ -24,7 +24,7 @@
 
   <div id="header">
     <div id="header-left">
-      <img src= "{{ url_for("static", filename="matrix-keys.png") }}"
+      <img src= "media/matrix-keys.png"
         alt="Home" id="logo" />
     </div>
 
@@ -45,14 +45,14 @@
       "http://www.ohloh.net/accounts/34038/widgets/account_detailed.gif"
       alt="View ohloh profile" title="View ohloh profile"></a>
       <ul>
-        <li><a href="{{ url_for("music") }}">Music</a></li>
-        <li><a href="{{ url_for("cst") }}">Copious Spare Time</a></li>
+        <li><a href="music">Music</a></li>
+        <li><a href="cst">Copious Spare Time</a></li>
       </ul>
     </div>
 
     <div id="header-center">
       <h1 id='site-name'>
-        <a href="{{ url_for("index") }}" title="Home">Corbin Simpson</a>
+        <a href="/" title="Home">Corbin Simpson</a>
       </h1>
     Most awesome, dude!
     </div>
@@ -105,8 +105,6 @@
   the jump the first time. Be excellent. Warning: Some experts
   believe that reading footnotes may cause undesired side
   effects.</p>
-  <p>Total preparation time: {{ "%.4f" % (time.time() - starting_time) }}
-  seconds</p>
 </div>
 </div>
 

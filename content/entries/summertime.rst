@@ -1,4 +1,8 @@
-Summertime
+title: Summertime
+type: entry
+category: entries
+datetime: 2011-07-31 23:47:12
+---
 
 Some people use summer vacation to do useful things. I have been using my
 summertime to demonstrate how awesome <a

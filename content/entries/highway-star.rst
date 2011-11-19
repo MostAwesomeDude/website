@@ -1,4 +1,8 @@
-Highway Star
+title: Highway Star
+type: entry
+category: entries
+datetime: 2011-08-09 02:03:29
+---
 
 I have a <a href="http://en.wikipedia.org/wiki/Chromebook">Chromebook</a>.
 Specifically, a Samsung Series 5, courtesy of <a
