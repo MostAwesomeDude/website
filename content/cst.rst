@@ -1,3 +1,9 @@
+title: Copious Spare Time
+template: page
+url: /cst.html
+datetime: 2011-11-19 00:00:00
+---
+
 Copious Spare Time
 ==================
 

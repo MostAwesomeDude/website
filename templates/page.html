@@ -1,5 +1,5 @@
 {% extends "site.html" %}
 {% block main %}
-  {{ content|rst|safe }}
+  {{ page.content }}
   {{ super() }}
 {% endblock %}
