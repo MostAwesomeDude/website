@@ -93,7 +93,7 @@ because ``my_var`` should be easy to track and the line where it was defined
 should be obvious. If it's not, you're writing bad code.
 
 .. _glyph: http://glyph.twistedmatrix.com/
-.. _fantastic anti-Node troll: http://teddziuba.com/2011/10/node-js-is-cancer.html"
+.. _fantastic anti-Node troll: http://teddziuba.com/2011/10/node-js-is-cancer.html
 .. _Twisted: http://twistedmatrix.com/
 .. _Heroku: http://heroku.com/
 .. _assertion I made on Hacker News: http://news.ycombinator.com/item?id=3063157
