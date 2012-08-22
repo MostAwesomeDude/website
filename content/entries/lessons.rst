@@ -16,7 +16,7 @@ satisfies the following conditions:
  #. The caller may use either the Twisted or non-Twisted interfaces at their
     leisure.
  #. The difference between the Twisted and non-Twisted results at all of the
-    borders of the module should be undone by ``maybeDeferred``.
+    borders of the module should be undone by `maybeDeferred`_.
 
 These conditions should not be difficult to achieve and yet they seem to
 constantly stymie many would-be IRC bot authors. I'm going to see if I can
@@ -85,18 +85,21 @@ this thing in Python, as well. So, how do we lift a function up into a
 Think about this for a second. Remember, ``Deferred`` objects carry state
 around with them, so we need this "impure" sort of approach, which is really
 not actually impure but just object-at-a-time. If you're unsure of exactly
-what this snippet's doing, stop and think about it for a bit until you're sure
-you've got it down.
+what this snippet's doing, go through it one bit at a time.
 
-Now, let's make this concrete. Let's say that we've got a system that has two
-implementations of a client, one which is synchronous, and one which is
-asynchronous. We've isolated and split out these clients such that they have
-exactly the same setup functions, and they return exactly the same data, with
-one single difference: One client is blocking and returns the data, and the
-other client is non-blocking and returns a ``Deferred`` which will fire with
-the data. This is *exactly* the difference that ``maybeDeferred`` can paper
-over. We've got all of the code set up just the way we want it, according to
-those conditions I listed earlier.
+ #. Take a ``Deferred`` which will fire with a value of type ``a``.
+ #. Append a callback which transforms ``a`` into ``b``.
+ #. Return a ``Deferred`` which will fire with a value of type ``b``.
+
+Now, let's make this concrete with an example. Let's say that we've got a
+system that has two implementations of a client, one which is synchronous, and
+one which is asynchronous. We've isolated and split out these clients such
+that they have exactly the same setup functions, and they return exactly the
+same data, with one single difference: One client is blocking and returns the
+data, and the other client is non-blocking and returns a ``Deferred`` which
+will fire with the data. This is *exactly* the difference that
+``maybeDeferred`` can paper over. We've got all of the code set up just the
+way we want it, according to those conditions I listed earlier.
 
 But! These clients only make up a couple dozen lines of code. There are still
 thousands of lines of code that only work with the synchronous client. How do
@@ -117,13 +120,18 @@ output. For unlifted non-Twisted data, this is simply the classic builtin
     def apply(f, a):
         return f(a)
 
+Note that my ``apply`` is *not* the Python ``apply`` builtin function, which
+does a slightly different thing if its argument is iterable.
+
 And for the ``Deferred``-handling case, let's create a slightly more
 interesting applier which will continue to move data through the ``Deferred``.
 We already wrote this above, actually, and in Haskell, it would be ``fmap``:
 
-.. sourcecode:: python
+.. sourcecode:: haskell
 
     fmap :: Functor f => (a -> b) -> f a -> f b
+
+.. sourcecode:: python
 
     def deferredApply(f, deferred):
         deferred.addCallback(f)
@@ -134,7 +142,9 @@ And now we're ready to put everything together! Here's a small skeleton:
 .. sourcecode:: python
 
     class SyncClient(object):
-        applier = staticmethod(apply)
+        @staticmethod
+        def applier(f, value):
+            return f(value)
 
         def request(self, s):
             return sync_library_call(s)
@@ -161,7 +171,9 @@ Look at ``request_and_compute``. It has no idea whether it's handling
 synchronous or asynchronous data, and it doesn't really care; it asks the
 client to actually apply the computation to the data. And the computation
 itself is totally unaware of things going on around it. It doesn't even have
-to be pure; it could do all kinds of side effects with that data.
+to be pure; it could do all kinds of side effects with that data. The only
+requirement for the computation is that it must remember to return the data so
+that subsequent computations can access it.
 
 This is the approach I'm taking in a new library I'm hacking together for
 `Ganeti`_, called `Gentleman`_. I think it'll work out well.
@@ -169,3 +181,4 @@ This is the approach I'm taking in a new library I'm hacking together for
 .. _Ganeti: https://code.google.com/p/ganeti/
 .. _Gentleman: https://github.com/MostAwesomeDude/gentleman
 .. _Twisted: http://twistedmatrix.com/
+.. _maybeDeferred: http://twistedmatrix.com/documents/current/api/twisted.internet.defer.maybeDeferred.html
