@@ -31,11 +31,9 @@ Stuff here is almost completely boredom-motivated. If you want to see
 something move up on my list of priorities, you should click on my Paypal
 button and tell me in the notes what you like to see me working on.
 
- * Bravo. I happen to *like* working on Bravo, so odds are good that this is
-   going to be where most of my spare time goes, at least for the next few
-   months. Bravo's todo list is in its readme, and its issue tracker.
- * DCoN. There's some special love being thrown at it right now, mostly around
-   Axiom.
+ * DCoN.
+ * Lye. The Lybrary is slowly getting fleshed out, and it should be complete
+   enough for useful things soon.
  * Gallium.
 
    * Galahad. Just about every assert in driver code should be moved up to the
@@ -57,12 +55,6 @@ button and tell me in the notes what you like to see me working on.
    * For that matter, Salsa needs to be completed, since that was the original
      reason for developing PyFluidSynth. Salsa's unfortunately on hiatus, but
      all the Salsa-related art and music is still on schedule.
-
- * DarkLight. Possibly the most important thing on the unpaid list.
-
-   * Finish the GUI. It's really not that hard of a task.
-   * Convince people to deploy it, and start stress-testing it with real data.
-   * Anything else in the README; there's plenty of things to go after.
 
  * Linux. A variety of projects await.
 
@@ -126,3 +118,5 @@ Never touching this again without good reason.
  * ttk. Meh. There's no longer any point to this.
  * Pydra. http://pydra-project.osuosl.org/ and
    http://code.osuosl.org/projects/pydra
+ * Bravo. I can't deal with Minecraft communities any longer. I won't work on
+   it for free.
