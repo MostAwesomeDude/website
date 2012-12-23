@@ -79,7 +79,7 @@ this thing in Python, as well. So, how do we lift a function up into a
         return b
 
     def deferredComputation(deferred):
-        deferred.addCallback(a)
+        deferred.addCallback(computation)
         return deferred
 
 Think about this for a second. Remember, ``Deferred`` objects carry state
