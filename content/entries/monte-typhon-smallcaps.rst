@@ -139,8 +139,8 @@ handling and an environment with frames for local values and closed-over
 "global" values.
 
 * All expressions return a value. Therefore, an expression should always
-  compile to some instructions which start with an empty stack leave a single
-  value on the stack.
+  compile to some instructions which start with an empty stack and leave a
+  single value on the stack.
 * All patterns perform some side effects in the environment and return
   nothing. Therefore, they should compile to instructions which consume two
   values from the stack (specimen and ejector) and leave nothing.
